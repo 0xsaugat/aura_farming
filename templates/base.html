@@ -1,108 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Aura Farming{% endblock %}</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}AURA-Nepal{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <style>
-        :root {
-            color-scheme: light;
-            --bg: #f5f1e8;
-            --surface: #fffdf8;
-            --text: #1f2933;
-            --muted: #52606d;
-            --accent: #c2410c;
-            --border: #e6dfd1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Georgia, "Times New Roman", serif;
-            background: radial-gradient(circle at top, #fff7ed 0%, var(--bg) 55%, #efe7d7 100%);
-            color: var(--text);
-        }
-
-        .site-shell {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .site-header,
-        .site-footer {
-            padding: 1.25rem 1.5rem;
-            background: rgba(255, 253, 248, 0.92);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .site-footer {
-            border-bottom: 0;
-            border-top: 1px solid var(--border);
-            margin-top: auto;
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .brand {
-            margin: 0;
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-        }
-
-        .brand a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        main {
-            width: min(960px, calc(100% - 2rem));
-            margin: 0 auto;
-            padding: 2rem 0 3rem;
-        }
-
         .panel {
             background: rgba(255, 253, 248, 0.9);
-            border: 1px solid var(--border);
+            border: 1px solid #e6dfd1;
             border-radius: 20px;
             padding: 2rem;
             box-shadow: 0 18px 50px rgba(82, 96, 109, 0.12);
         }
-
-        @media (max-width: 640px) {
-            .site-header,
-            .site-footer {
-                padding: 1rem;
-            }
-
-            main {
-                width: min(100% - 1rem, 960px);
-                padding-top: 1.25rem;
-            }
-
-            .panel {
-                padding: 1.25rem;
-                border-radius: 16px;
-            }
-        }
     </style>
+    {% block extra_head %}{% endblock %}
 </head>
-<body>
-    <div class="site-shell">
-        <header class="site-header">
-            <h1 class="brand"><a href="/">Aura Farming</a></h1>
-        </header>
-
-        <main>
-            {% block content %}{% endblock %}
-        </main>
-
-        <footer class="site-footer">
-            Initial Django setup with templates and media routing.
-        </footer>
+<body class="{% block body_class %}bg-background text-on-surface{% endblock %}">
+    <div{% if show_dashboard_sidebar %} class="flex min-h-screen"{% endif %}>
+        {% if show_dashboard_sidebar %}
+            {% include 'includes/sidebar.html' %}
+            <div class="min-w-0 flex-1">
+        {% endif %}
+        {% block content %}{% endblock %}
+        {% if show_dashboard_sidebar %}
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>

@@ -1,0 +1,29 @@
+<aside class="sticky top-0 flex h-screen w-72 shrink-0 flex-col border-r border-outline-variant/15 bg-gradient-to-b from-surface-container-low to-surface-container-lowest shadow-[0_24px_60px_rgba(25,28,29,0.08)]">
+<div class="p-8 pb-5">
+<a class="block" href="{% url 'app:landing_page' %}">
+<h1 class="text-primary text-2xl font-extrabold tracking-tight">SustainNepal</h1>
+<p class="mt-1 text-sm text-on-surface-variant">Tree Tracking System</p>
+</a>
+</div>
+<nav aria-label="Global sidebar navigation" class="mt-4 flex-1 space-y-2 px-4">
+{% for item in sidebar_nav %}
+<a aria-current="{% if current_page == item.slug %}page{% else %}false{% endif %}" class="{% if current_page == item.slug %}border-l-2 border-secondary bg-[rgba(27,67,50,0.12)] font-semibold text-primary shadow-sm{% else %}text-on-surface-variant{% endif %} flex items-center gap-4 rounded-2xl px-6 py-4 transition-colors hover:bg-surface-container focus:outline-none focus:ring-2 focus:ring-secondary/30" href="{% url item.url_name %}" title="Go to {{ item.label }}">
+<span class="material-symbols-outlined {% if current_page == item.slug %}text-secondary{% else %}text-outline{% endif %}"{% if current_page == item.slug %} style="font-variation-settings: 'FILL' 1;"{% endif %}>{{ item.icon }}</span>
+<span>{{ item.label }}</span>
+</a>
+{% endfor %}
+</nav>
+<div class="p-8">
+<a class="mb-4 flex items-center justify-center rounded-2xl bg-primary px-4 py-3 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90" href="{% url 'app:secure_access_login' %}">Secure Access</a>
+<div class="relative overflow-hidden rounded-2xl bg-primary-container p-6">
+<div class="relative z-10">
+<p class="text-on-primary-container text-xs font-bold uppercase tracking-widest mb-2">Impact Score</p>
+<h4 class="text-white text-3xl font-extrabold">8.4</h4>
+<p class="text-on-primary-container text-xs mt-1">Sovereign Rating</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20">
+<span class="material-symbols-outlined text-7xl text-white">eco</span>
+</div>
+</div>
+</div>
+</aside>

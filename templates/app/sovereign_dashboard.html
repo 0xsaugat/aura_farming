@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block title %}SustainNepal Dashboard{% endblock %}
+
+{% block body_class %}bg-background text-on-surface min-h-screen{% endblock %}
+
+{% block extra_head %}
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "tertiary": "#152b1c",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-fixed": "#a1f4c8",
+                        "primary-fixed": "#c1ecd4",
+                        "tertiary-fixed-dim": "#b3cdb7",
+                        "primary": "#012d1d",
+                        "on-secondary-fixed": "#002113",
+                        "surface-container-highest": "#e1e3e4",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#414844",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#092012",
+                        "on-tertiary-container": "#93ad98",
+                        "surface-variant": "#e1e3e4",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#2a4131",
+                        "tertiary-fixed": "#cee9d3",
+                        "secondary": "#116c4a",
+                        "on-surface": "#191c1d",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#a5d0b9",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-primary-fixed": "#002114",
+                        "surface-container": "#edeeef",
+                        "on-background": "#191c1d",
+                        "on-primary-container": "#86af99",
+                        "surface-container-high": "#e7e8e9",
+                        "primary-container": "#1b4332",
+                        "error": "#ba1a1a",
+                        "outline": "#717973",
+                        "surface-dim": "#d9dadb",
+                        "secondary-fixed-dim": "#86d7ad",
+                        "secondary-container": "#a1f4c8",
+                        "outline-variant": "#c1c8c2",
+                        "on-secondary-container": "#1b724f",
+                        "surface": "#f8f9fa",
+                        "inverse-surface": "#2e3132",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "surface-bright": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#354c3b",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#3f6653",
+                        "on-tertiary": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+        body {
+            font-family: 'Space Mono', monospace;
+            letter-spacing: -0.01em;
+        }
+
+        .pro-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.84));
+            border: 1px solid rgba(113, 121, 115, 0.24);
+            box-shadow: 0 20px 45px rgba(25, 28, 29, 0.08);
+        }
+
+        .kpi-value {
+            font-size: clamp(1.55rem, 2.8vw, 2.45rem);
+            font-weight: 700;
+            line-height: 1.05;
+            color: #012d1d;
+        }
+
+        .muted-chip {
+            border: 1px solid rgba(113, 121, 115, 0.24);
+            background: rgba(237, 238, 239, 0.55);
+        }
+
+        .table-head {
+            color: #414844;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 9999px;
+            margin-right: 0.45rem;
+            vertical-align: middle;
+        }
+
+        .status-dot-live {
+            background: #116c4a;
+            box-shadow: 0 0 0 4px rgba(17, 108, 74, 0.18);
+        }
+
+        .status-dot-muted {
+            background: #717973;
+        }
+
+        .line-divider {
+            border-top: 1px solid rgba(113, 121, 115, 0.2);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<main class="flex min-h-screen flex-col bg-surface">
+<section class="px-10 pb-10 pt-8">
+<div class="mx-auto flex w-full max-w-7xl flex-col gap-8">
+<div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+<div>
+<p class="mb-2 inline-flex items-center rounded-full bg-secondary-container/40 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-on-secondary-container">
+<span class="status-dot status-dot-live"></span>Live Governance Node
+</p>
+<h1 class="text-4xl font-bold tracking-tight text-primary">Sovereign Forestry Dashboard</h1>
+<p class="mt-2 max-w-2xl text-sm text-on-surface-variant">A clean operational view of ecological assets, registry uploads, carbon valuation, and verified finance transactions.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<a class="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-on-primary transition-opacity hover:opacity-90" href="{% url 'app:data_intake_upload' %}">New Intake</a>
+<a class="rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-4 py-2 text-sm font-bold text-primary transition-colors hover:bg-surface-container-low" href="{% url 'app:trust_analytics' %}">Open Analytics</a>
+</div>
+</div>
+
+<div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+<article class="pro-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant">Registered Uploads</p>
+<p class="kpi-value mt-3">{{ summary.total_uploads }}</p>
+<p class="mt-3 text-xs text-on-surface-variant">All media submissions in sovereign registry.</p>
+</article>
+<article class="pro-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant">Detected Trees</p>
+<p class="kpi-value mt-3">{{ summary.total_trees }}</p>
+<p class="mt-3 text-xs text-on-surface-variant">Consolidated output from verified scans.</p>
+</article>
+<article class="pro-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant">Carbon Tons</p>
+<p class="kpi-value mt-3">{{ summary.total_carbon_tons }}</p>
+<p class="mt-3 text-xs text-on-surface-variant">Modeled sequestration estimate (tons).</p>
+</article>
+<article class="pro-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant">Verified Value</p>
+<p class="kpi-value mt-3">${{ summary.total_value }}</p>
+<p class="mt-3 text-xs text-on-surface-variant">Current notional valuation from records.</p>
+</article>
+</div>
+
+<div class="grid gap-6 xl:grid-cols-12">
+<section class="pro-card rounded-2xl p-6 xl:col-span-8">
+<div class="mb-5 flex items-center justify-between">
+<div>
+<h2 class="text-lg font-bold text-primary">Recent Upload Registry</h2>
+<p class="text-xs text-on-surface-variant">Latest intake pipeline events and processing states.</p>
+</div>
+<span class="muted-chip rounded-full px-3 py-1 text-xs font-bold text-on-surface-variant">last 10 uploads</span>
+</div>
+<div class="line-divider"></div>
+<div class="mt-4 overflow-x-auto">
+<table class="min-w-full text-left">
+<thead>
+<tr>
+<th class="table-head pb-3 pr-4">ID</th>
+<th class="table-head pb-3 pr-4">Region</th>
+<th class="table-head pb-3 pr-4">Type</th>
+<th class="table-head pb-3 pr-4">Status</th>
+<th class="table-head pb-3 pr-4">Tree Count</th>
+</tr>
+</thead>
+<tbody>
+{% for upload in recent_uploads %}
+<tr class="border-t border-outline-variant/10">
+<td class="py-3 pr-4 text-sm font-bold text-primary">#{{ upload.id }}</td>
+<td class="py-3 pr-4 text-sm text-on-surface">{{ upload.province }} / {{ upload.district }}</td>
+<td class="py-3 pr-4 text-sm text-on-surface-variant">{{ upload.media_type }}</td>
+<td class="py-3 pr-4 text-sm">
+{% if upload.status == 'processed' %}
+<span class="status-dot status-dot-live"></span><span class="font-bold text-primary">Processed</span>
+{% else %}
+<span class="status-dot status-dot-muted"></span><span class="font-bold text-on-surface-variant">{{ upload.status|title }}</span>
+{% endif %}
+</td>
+<td class="py-3 pr-4 text-sm font-bold text-primary">
+{% if upload.detection %}
+{{ upload.detection.tree_count }}
+{% else %}
+--
+{% endif %}
+</td>
+</tr>
+{% empty %}
+<tr>
+<td class="py-5 text-sm text-on-surface-variant" colspan="5">No uploads available yet.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="pro-card rounded-2xl p-6 xl:col-span-4">
+<div class="mb-5">
+<h2 class="text-lg font-bold text-primary">Province Performance</h2>
+<p class="text-xs text-on-surface-variant">Relative tree contribution by top provinces.</p>
+</div>
+<div class="space-y-4">
+{% for item in province_breakdown %}
+<div>
+<div class="mb-1 flex items-center justify-between text-xs">
+<span class="font-bold text-on-surface">{{ item.province }}</span>
+<span class="font-bold text-primary">{{ item.total_trees }}</span>
+</div>
+<div class="h-2 overflow-hidden rounded-full bg-surface-container-highest">
+<div class="h-full rounded-full bg-gradient-to-r from-secondary-fixed to-secondary" style="width:{% if forloop.first %}100%{% elif forloop.counter == 2 %}80%{% elif forloop.counter == 3 %}65%{% elif forloop.counter == 4 %}50%{% else %}35%{% endif %}"></div>
+</div>
+</div>
+{% empty %}
+<p class="text-sm text-on-surface-variant">No province data available.</p>
+{% endfor %}
+</div>
+
+<div class="line-divider my-5"></div>
+<div class="rounded-xl bg-primary px-4 py-3 text-on-primary">
+<p class="text-[11px] font-bold uppercase tracking-[0.12em] opacity-80">Ledger State</p>
+<p class="mt-1 text-sm font-bold">Synchronized and audit-ready</p>
+</div>
+</section>
+</div>
+
+<section class="pro-card rounded-2xl p-6">
+<div class="mb-5 flex items-center justify-between">
+<div>
+<h2 class="text-lg font-bold text-primary">Finance Transactions</h2>
+<p class="text-xs text-on-surface-variant">Latest buyer-side payment and settlement records.</p>
+</div>
+<a class="rounded-xl border border-outline-variant/30 px-3 py-1 text-xs font-bold text-primary transition-colors hover:bg-surface-container-low" href="{% url 'app:verified_finance' %}">Open Finance Page</a>
+</div>
+<div class="line-divider"></div>
+<div class="mt-4 overflow-x-auto">
+<table class="min-w-full text-left">
+<thead>
+<tr>
+<th class="table-head pb-3 pr-4">TX</th>
+<th class="table-head pb-3 pr-4">Buyer</th>
+<th class="table-head pb-3 pr-4">Value</th>
+<th class="table-head pb-3 pr-4">Status</th>
+</tr>
+</thead>
+<tbody>
+{% for tx in latest_transactions %}
+<tr class="border-t border-outline-variant/10">
+<td class="py-3 pr-4 text-sm font-bold text-primary">#{{ tx.id }}</td>
+<td class="py-3 pr-4 text-sm text-on-surface">{{ tx.buyer_company }}</td>
+<td class="py-3 pr-4 text-sm font-bold text-primary">${{ tx.total_value }}</td>
+<td class="py-3 pr-4 text-sm">
+{% if tx.payment_status == 'completed' %}
+<span class="status-dot status-dot-live"></span><span class="font-bold text-primary">Completed</span>
+{% else %}
+<span class="status-dot status-dot-muted"></span><span class="font-bold text-on-surface-variant">{{ tx.payment_status|title }}</span>
+{% endif %}
+</td>
+</tr>
+{% empty %}
+<tr>
+<td class="py-5 text-sm text-on-surface-variant" colspan="4">No finance transactions available.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</section>
+
+<footer class="mt-auto border-t border-outline-variant/15 bg-surface-container-low/40 px-10 py-8">
+<div class="mx-auto flex w-full max-w-7xl flex-col gap-3 text-xs text-on-surface-variant md:flex-row md:items-center md:justify-between">
+<p>© 2024 SustainNepal. Professional governance dashboard.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary" href="{% url 'app:landing_page' %}">Privacy Policy</a>
+<a class="hover:text-primary" href="{% url 'app:landing_page' %}">Terms of Service</a>
+<a class="hover:text-primary" href="{% url 'app:landing_page' %}">Contact Support</a>
+</div>
+</div>
+</footer>
+</main>
+{% endblock %}
+
+
+

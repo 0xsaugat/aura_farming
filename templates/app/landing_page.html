@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+
+{% block title %}AURA-Nepal | Sovereign Sustainability{% endblock %}
+
+{% block body_class %}text-on-surface{% endblock %}
+
+{% block extra_head %}
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "tertiary": "#152b1c",
+              "on-primary-fixed-variant": "#274e3d",
+              "surface-container-low": "#f3f4f5",
+              "secondary-fixed": "#a1f4c8",
+              "primary-fixed": "#c1ecd4",
+              "tertiary-fixed-dim": "#b3cdb7",
+              "primary": "#012d1d",
+              "on-secondary-fixed": "#002113",
+              "surface-container-highest": "#e1e3e4",
+              "background": "#f8f9fa",
+              "on-surface-variant": "#414844",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#092012",
+              "on-tertiary-container": "#93ad98",
+              "surface-variant": "#e1e3e4",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#2a4131",
+              "tertiary-fixed": "#cee9d3",
+              "secondary": "#116c4a",
+              "on-surface": "#191c1d",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#a5d0b9",
+              "inverse-on-surface": "#f0f1f2",
+              "on-secondary-fixed-variant": "#005236",
+              "on-primary-fixed": "#002114",
+              "surface-container": "#edeeef",
+              "on-background": "#191c1d",
+              "on-primary-container": "#86af99",
+              "surface-container-high": "#e7e8e9",
+              "primary-container": "#1b4332",
+              "error": "#ba1a1a",
+              "outline": "#717973",
+              "surface-dim": "#d9dadb",
+              "secondary-fixed-dim": "#86d7ad",
+              "secondary-container": "#a1f4c8",
+              "outline-variant": "#c1c8c2",
+              "on-secondary-container": "#1b724f",
+              "surface": "#f8f9fa",
+              "inverse-surface": "#2e3132",
+              "primary-fixed-dim": "#a5d0b9",
+              "surface-bright": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#354c3b",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#3f6653",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #1B4332 0%, #012d1d 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .soft-shadow {
+            box-shadow: 0px 20px 40px rgba(25, 28, 29, 0.06);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<main>
+<header class="border-b border-outline-variant/10 bg-surface/70 backdrop-blur-sm">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+<a class="flex items-center gap-3" href="{% url 'app:landing_page' %}">
+<span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-on-primary shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">nature_people</span>
+</span>
+<span>
+<span class="block font-headline text-xl font-extrabold tracking-tight text-primary">SustainNepal</span>
+<span class="block text-xs font-medium uppercase tracking-[0.24em] text-on-surface-variant">Sovereign Climate Registry</span>
+</span>
+</a>
+<div class="flex items-center gap-3">
+<a class="hidden rounded-full px-4 py-2 text-sm font-medium text-on-surface-variant transition-colors hover:bg-surface-container-low hover:text-primary sm:inline-flex" href="{% url 'app:trust_analytics' %}">Methodology</a>
+<a class="rounded-full border border-outline/20 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-surface-container-low" href="{% url 'app:secure_access_login' %}">Secure Access</a>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative px-6 pt-16 pb-24 overflow-hidden">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold mb-6">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">eco</span>
+                        Pioneering Nepal's Green Sovereignty
+                    </div>
+<h1 class="font-headline text-5xl lg:text-7xl font-extrabold text-primary leading-[1.1] mb-8">
+                        The Sovereign Trust Engine for Nepal's <span class="text-secondary italic">Carbon Economy</span>
+</h1>
+<p class="text-lg lg:text-xl text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                        Transitioning from manual guesswork to verified digital assets. Empowering stakeholders with high-precision, AI-driven forest monitoring and carbon accounting.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="bg-primary text-on-primary px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 hover:bg-primary-container transition-all" href="{% url 'app:sovereign_dashboard' %}">
+                            Explore the Trust Engine
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="border border-outline/20 px-8 py-4 rounded-xl font-semibold text-lg text-primary flex items-center justify-center gap-2 hover:bg-surface-container-low transition-all" href="{% url 'app:sovereign_dashboard' %}">
+                            View Methodology
+            </a>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="relative w-full aspect-square rounded-2xl overflow-hidden soft-shadow">
+<img alt="Himalayan Forest" class="w-full h-full object-cover" data-alt="Misty evergreen forest in the Himalayas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1mTBv6tbe4uC2mJ8VNx2jq-bU8qyfzBcDuxBqbB7EbVeSAQeWI_zzDSJrLrqo26YdzGOlB7AXvzReexLXQa4pq52l1YAsPjCrAHEJWGOzNhK0Gd3Af_uHdHH-DvX-HTlDDjllmMmEPfaA5jVEhx6TUuJM_thTgq1vRcQtUJ0nYsolFJu8aKfQvUiSTTy_C1M-8gDVPHKftsI-53XEXtceLH9bNLNY1axX2SxxKW7ORBkuetSF_a5MZ1kuAIOt11qn23Uqj0lO4Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<!-- Floating Stats Card -->
+<div class="absolute -bottom-6 -left-6 lg:-left-12 glass-card p-6 rounded-2xl soft-shadow max-w-[280px]">
+<div class="flex items-center gap-4 mb-4">
+<div class="h-12 w-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">query_stats</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Verified Growth</p>
+<p class="text-xl font-bold text-primary">+12.4% YoY</p>
+</div>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary-fixed to-secondary w-[78%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Abstract background shape -->
+<div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-surface-container-low rounded-l-[100px] opacity-50"></div>
+</section>
+<!-- The Mission (Bento Grid) -->
+<section class="py-24 px-6 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16">
+<h2 class="font-headline text-3xl lg:text-4xl font-bold text-primary mb-4">Redefining Transparency</h2>
+<p class="text-on-surface-variant max-w-2xl">Bridging the gap between ecological preservation and digital capital with uncompromising precision.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<!-- Large Feature -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-2xl p-10 flex flex-col justify-between soft-shadow border-t-4 border-secondary">
+<div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-6" data-icon="cloud_upload">cloud_upload</span>
+<h3 class="font-headline text-3xl font-bold text-primary mb-4">Immutable Data Ingestion</h3>
+<p class="text-on-surface-variant text-lg max-w-md">Our system captures multi-spectral satellite data and ground-level IoT sensor inputs, creating a "Digital Twin" of every tree in our registry.</p>
+</div>
+<div class="mt-8 grid grid-cols-3 gap-4">
+<div class="h-32 bg-surface-container rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 hover:scale-110 transition-transform" data-alt="Satellite view of lush green mountain ranges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB1KcTdFRPDyod__ya14dUdGyJ8U24O-n9lazXmScvG2kI4UUBwQrVizUXjpOx4Q-VniS10zmjYtE5GJGL0mjD3EfjbaI1H62px6EOipvDJhbfQkU5KO-1PruiQgrDc_RN8S8-chcZVXAD1LEXrmJ2F7dTi-KdLOcsnDphs1_mwrvNsU6tew9DJVMuoR9Gjnqns8-ZCR5sUotAWcubERZcDoORhFshodP6AG-oVA65SNyBrrrDYWMn6Hx8tSO-RZ4fUq3zP6OGyg"/>
+</div>
+<div class="h-32 bg-surface-container rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 hover:scale-110 transition-transform" data-alt="Extreme close up of pine needles with morning dew" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEkWxNHZLr5TIcY3m-tI2guxPqRk23IpyIIfjuzOxgwziN1Yxmuw9jl30_T-arDfHsYBzfoD6hzXfEDKkDJXrwvOF99CPy1K8qqNyEfFWZNF-jVxipzEA5xs2CvrHRc5buThAwk4I_VKb5nECa9-2NU8tnvM0mQO4yuevyarEy4AmJ6awVcgMm69__qdVdHjbFDC1MfRIjaF1eXYwNCdQrEzlnsWelvnfLaA1M83eIg-0zqVNlA5fAL5CJ3gdEsttzn-3IIlnrkA"/>
+</div>
+<div class="h-32 bg-surface-container rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 hover:scale-110 transition-transform" data-alt="Sunlight streaming through tall forest trees" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPNLJLUEyF5idiiS94b89EMuu2qutSR5Cgi3sjflhZkiyYlzHvYAbChP7rU0duwiYpJazs_leYRzWPuetkOi5gxe4CXLPyCVRw2cV8xgFg0Fx4lF8JnPo_ytcC_N80vAelweCUzk2CmlVormiaTn9YPd925GCz2NPshHrQEblFWVsAO1r4FZjlZKGkJfIrQiwx6jVIDoZbjA5ke5Cn74iR4W4JmKcsEsMgCMJyYxhTVMNztRbkf_OZvi5wB6_1aPO2ITg1AuBA9Q"/>
+</div>
+</div>
+</div>
+<!-- Small Feature 1 -->
+<div class="md:col-span-4 bg-primary rounded-2xl p-10 flex flex-col justify-center text-on-primary soft-shadow">
+<span class="material-symbols-outlined text-secondary-fixed text-4xl mb-6" data-icon="analytics">analytics</span>
+<h3 class="font-headline text-2xl font-bold mb-4">The Trust Gap</h3>
+<p class="text-on-primary-container text-sm leading-relaxed">Traditional carbon offsets rely on intermittent physical surveys. AURA closes the gap with real-time verification and machine-learning anomaly detection.</p>
+</div>
+<!-- Small Feature 2 -->
+<div class="md:col-span-4 bg-surface-container-low rounded-2xl p-10 flex flex-col justify-between hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="payments">payments</span>
+<div>
+<h3 class="font-headline text-xl font-bold text-primary mb-2">Tokenized Assets</h3>
+<p class="text-on-surface-variant text-sm">Every verified hectare becomes a liquid digital asset for the global market.</p>
+</div>
+</div>
+<!-- Feature Link -->
+<div class="md:col-span-8 bg-secondary-container rounded-2xl p-10 flex items-center justify-between group cursor-pointer overflow-hidden relative">
+<div class="z-10">
+<h3 class="font-headline text-2xl font-bold text-on-secondary-container">Explore the AI Vision</h3>
+<p class="text-on-secondary-container/80">See how our neural networks identify species from 400km above.</p>
+</div>
+<span class="material-symbols-outlined text-5xl text-on-secondary-container group-hover:translate-x-2 transition-transform z-10">arrow_right_alt</span>
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map CTA Section -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-6">
+<div class="rounded-2xl overflow-hidden bg-primary h-[500px] relative flex items-center">
+<img class="absolute inset-0 w-full h-full object-cover opacity-30" data-alt="Topographical map of Nepal highlighting forest regions" data-location="Nepal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdSF0qLiy1qRMEi8r1S-Apz2cS6tijN-miF6Rntw_1c1EmD5L-7SpddPwXHz4wWs21-nPtnvJ0HsuhuSU2EOqNkvB9TioVGbObmUD0Fjugz9mZxl8cc8wiFryixZVscXAQKMVVyrkDq1BooGFWOCgvCNyMHVFYFbibX-NKC1yefWB2rH2nGa18id2RIck3wzRMbtog_TzcCoBjq4twEXe0REbGDHSnMIaE4Qp4oz5EWIB-4KDGKwobYi-f31tVlA56vetM2BJXGQ"/>
+<div class="relative z-10 p-12 lg:p-24 max-w-2xl">
+<h2 class="font-headline text-4xl lg:text-5xl font-bold text-on-primary mb-6">Verified Assets Across 7 Provinces</h2>
+<p class="text-on-primary-container text-lg mb-10">Our network spans the breadth of the Himalayas, providing a unified dashboard for regional ecological governance.</p>
+<button class="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-semibold flex items-center gap-2 hover:bg-secondary-fixed-dim transition-all">
+<span class="material-symbols-outlined">map</span>
+                            Launch Interactive Map
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low pt-20 pb-10 px-6 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="md:col-span-1">
+<span class="font-headline font-extrabold text-2xl text-primary block mb-6">SustainNepal</span>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        The definitive platform for verified forest assets and sovereign carbon inventory.
+                    </p>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-6">Platform</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:sovereign_dashboard' %}">Dashboard</a></li>
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:trust_analytics' %}">Analytics</a></li>
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:nepal_trust_map' %}">Tree Registry</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-6">Company</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:landing_page' %}">About Mission</a></li>
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:secure_access_login' %}">Contact Support</a></li>
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:trust_analytics' %}">Methodology</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-6">Legal</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:landing_page' %}">Privacy Policy</a></li>
+<li><a class="hover:text-secondary transition-colors" href="{% url 'app:landing_page' %}">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-on-surface-variant">© 2024 SustainNepal. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">mail</span>
+</div>
+</div>
+</div>
+</footer>
+{% endblock %}
+
+
+
