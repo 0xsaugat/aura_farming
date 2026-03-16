@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}AURA-Nepal | Sovereign Sustainability{% endblock %}
+{% block title %}SustainNepal | Verified Forest Intelligence{% endblock %}
 
 {% block body_class %}text-on-surface{% endblock %}
 
@@ -70,8 +70,16 @@
       }
     </script>
 <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
-        .font-headline { font-family: 'Manrope', sans-serif; }
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background:
+        radial-gradient(circle at 15% -10%, rgba(193, 236, 212, 0.45), transparent 45%),
+        radial-gradient(circle at 95% 10%, rgba(161, 244, 200, 0.22), transparent 36%),
+        #f8f9fa;
+    }
+    .font-headline { font-family: 'Space Mono', monospace; }
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
@@ -85,6 +93,24 @@
         }
         .soft-shadow {
             box-shadow: 0px 20px 40px rgba(25, 28, 29, 0.06);
+        }
+        .principle-card {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.82));
+          border: 1px solid rgba(113, 121, 115, 0.2);
+          box-shadow: 0 16px 34px rgba(25, 28, 29, 0.06);
+          transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+        .principle-card:hover {
+          transform: translateY(-3px);
+          border-color: rgba(63, 102, 83, 0.35);
+          box-shadow: 0 22px 42px rgba(25, 28, 29, 0.1);
+        }
+        .section-label {
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: #274e3d;
         }
     </style>
 {% endblock %}
@@ -114,21 +140,21 @@
 <div class="lg:col-span-7 z-10">
 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold mb-6">
 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">eco</span>
-                        Pioneering Nepal's Green Sovereignty
+            National Forestry Monitoring Platform
                     </div>
 <h1 class="font-headline text-5xl lg:text-7xl font-extrabold text-primary leading-[1.1] mb-8">
-                        The Sovereign Trust Engine for Nepal's <span class="text-secondary italic">Carbon Economy</span>
+            Verify Forest Evidence and Track <span class="text-secondary italic">Carbon Outcomes</span>
 </h1>
 <p class="text-lg lg:text-xl text-on-surface-variant max-w-xl mb-10 leading-relaxed">
-                        Transitioning from manual guesswork to verified digital assets. Empowering stakeholders with high-precision, AI-driven forest monitoring and carbon accounting.
+            SustainNepal connects image and video uploads, tree detection, carbon estimation, province mapping, and finance records into one auditable workflow for teams and regulators.
                     </p>
 <div class="flex flex-col sm:flex-row gap-4">
 <a class="bg-primary text-on-primary px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 hover:bg-primary-container transition-all" href="{% url 'app:sovereign_dashboard' %}">
-                            Explore the Trust Engine
+              Open Dashboard
                             <span class="material-symbols-outlined">arrow_forward</span>
 </a>
-<a class="border border-outline/20 px-8 py-4 rounded-xl font-semibold text-lg text-primary flex items-center justify-center gap-2 hover:bg-surface-container-low transition-all" href="{% url 'app:sovereign_dashboard' %}">
-                            View Methodology
+<a class="border border-outline/20 px-8 py-4 rounded-xl font-semibold text-lg text-primary flex items-center justify-center gap-2 hover:bg-surface-container-low transition-all" href="{% url 'app:trust_analytics' %}">
+              See Analytics
             </a>
 </div>
 </div>
@@ -144,12 +170,12 @@
 <span class="material-symbols-outlined text-on-secondary-container">query_stats</span>
 </div>
 <div>
-<p class="text-xs text-on-surface-variant font-medium">Verified Growth</p>
-<p class="text-xl font-bold text-primary">+12.4% YoY</p>
+<p class="text-xs text-on-surface-variant font-medium">Verified Trees</p>
+<p class="text-xl font-bold text-primary">{{ summary.total_trees }}</p>
 </div>
 </div>
 <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-gradient-to-r from-secondary-fixed to-secondary w-[78%]"></div>
+<div class="h-full bg-gradient-to-r from-secondary-fixed to-secondary w-[84%]"></div>
 </div>
 </div>
 </div>
@@ -157,20 +183,70 @@
 <!-- Abstract background shape -->
 <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-surface-container-low rounded-l-[100px] opacity-50"></div>
 </section>
+<!-- 7 Principles Section -->
+<section class="py-24 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="mb-14 text-center">
+<p class="section-label">Design Framework</p>
+<h2 class="font-headline mt-3 text-3xl lg:text-5xl font-bold text-primary">How The Platform Works</h2>
+<p class="mx-auto mt-4 max-w-3xl text-on-surface-variant">Seven connected modules turn raw field evidence into verified, finance-ready sustainability records.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+<article class="principle-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">1. Intake</p>
+<h3 class="mt-3 font-headline text-xl font-bold text-primary">Media Submission</h3>
+<p class="mt-2 text-sm text-on-surface-variant">Teams submit geotagged forest evidence from districts and provinces.</p>
+</article>
+<article class="principle-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">2. Detection</p>
+<h3 class="mt-3 font-headline text-xl font-bold text-primary">AI Tree Counting</h3>
+<p class="mt-2 text-sm text-on-surface-variant">The detector identifies tree instances and confidence score per upload.</p>
+</article>
+<article class="principle-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">3. Carbon</p>
+<h3 class="mt-3 font-headline text-xl font-bold text-primary">CO2 Estimation</h3>
+<p class="mt-2 text-sm text-on-surface-variant">Tree counts are converted to carbon tons using configured factors.</p>
+</article>
+<article class="principle-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">4. Valuation</p>
+<h3 class="mt-3 font-headline text-xl font-bold text-primary">Market Pricing</h3>
+<p class="mt-2 text-sm text-on-surface-variant">Estimated value is calculated from carbon tons and price per ton benchmark.</p>
+</article>
+<article class="principle-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">5. Mapping</p>
+<h3 class="mt-3 font-headline text-xl font-bold text-primary">Province View</h3>
+<p class="mt-2 text-sm text-on-surface-variant">Mapped uploads show district-level activity and regional contribution.</p>
+</article>
+<article class="principle-card rounded-2xl p-6">
+<p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">6. Verification</p>
+<h3 class="mt-3 font-headline text-xl font-bold text-primary">Ledger Evidence</h3>
+<p class="mt-2 text-sm text-on-surface-variant">Each processed record is tracked with verification and audit-friendly status.</p>
+</article>
+<article class="principle-card rounded-2xl p-6 md:col-span-2 xl:col-span-2">
+<p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">7. Finance</p>
+<h3 class="mt-3 font-headline text-xl font-bold text-primary">Transaction Tracking</h3>
+<p class="mt-2 text-sm text-on-surface-variant">Finance records capture buyer, per-ton price, value, and payment status in one place.</p>
+<div class="mt-5 h-2 w-full rounded-full bg-surface-container">
+<div class="h-2 w-4/5 rounded-full bg-gradient-to-r from-secondary to-primary"></div>
+</div>
+</article>
+</div>
+</div>
+</section>
 <!-- The Mission (Bento Grid) -->
 <section class="py-24 px-6 bg-surface">
 <div class="max-w-7xl mx-auto">
 <div class="mb-16">
-<h2 class="font-headline text-3xl lg:text-4xl font-bold text-primary mb-4">Redefining Transparency</h2>
-<p class="text-on-surface-variant max-w-2xl">Bridging the gap between ecological preservation and digital capital with uncompromising precision.</p>
+<h2 class="font-headline text-3xl lg:text-4xl font-bold text-primary mb-4">Operational Workflow</h2>
+<p class="text-on-surface-variant max-w-2xl">A practical chain from upload to verification, with every step visible in the dashboard.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
 <!-- Large Feature -->
 <div class="md:col-span-8 bg-surface-container-lowest rounded-2xl p-10 flex flex-col justify-between soft-shadow border-t-4 border-secondary">
 <div>
 <span class="material-symbols-outlined text-secondary text-4xl mb-6" data-icon="cloud_upload">cloud_upload</span>
-<h3 class="font-headline text-3xl font-bold text-primary mb-4">Immutable Data Ingestion</h3>
-<p class="text-on-surface-variant text-lg max-w-md">Our system captures multi-spectral satellite data and ground-level IoT sensor inputs, creating a "Digital Twin" of every tree in our registry.</p>
+<h3 class="font-headline text-3xl font-bold text-primary mb-4">Evidence Upload and Geotagging</h3>
+<p class="text-on-surface-variant text-lg max-w-md">Field teams upload image or video evidence with province, district, latitude, and longitude for each submission.</p>
 </div>
 <div class="mt-8 grid grid-cols-3 gap-4">
 <div class="h-32 bg-surface-container rounded-xl overflow-hidden">
@@ -187,26 +263,26 @@
 <!-- Small Feature 1 -->
 <div class="md:col-span-4 bg-primary rounded-2xl p-10 flex flex-col justify-center text-on-primary soft-shadow">
 <span class="material-symbols-outlined text-secondary-fixed text-4xl mb-6" data-icon="analytics">analytics</span>
-<h3 class="font-headline text-2xl font-bold mb-4">The Trust Gap</h3>
-<p class="text-on-primary-container text-sm leading-relaxed">Traditional carbon offsets rely on intermittent physical surveys. AURA closes the gap with real-time verification and machine-learning anomaly detection.</p>
+<h3 class="font-headline text-2xl font-bold mb-4">AI Detection Layer</h3>
+<p class="text-on-primary-container text-sm leading-relaxed">Detected tree counts, confidence score, and density indicators are generated after processing.</p>
 </div>
 <!-- Small Feature 2 -->
 <div class="md:col-span-4 bg-surface-container-low rounded-2xl p-10 flex flex-col justify-between hover:bg-surface-container transition-colors">
 <span class="material-symbols-outlined text-primary text-4xl" data-icon="payments">payments</span>
 <div>
-<h3 class="font-headline text-xl font-bold text-primary mb-2">Tokenized Assets</h3>
-<p class="text-on-surface-variant text-sm">Every verified hectare becomes a liquid digital asset for the global market.</p>
+<h3 class="font-headline text-xl font-bold text-primary mb-2">Carbon and Value</h3>
+<p class="text-on-surface-variant text-sm">Carbon tons and estimated value are computed and exposed in analytics and finance modules.</p>
 </div>
 </div>
 <!-- Feature Link -->
-<div class="md:col-span-8 bg-secondary-container rounded-2xl p-10 flex items-center justify-between group cursor-pointer overflow-hidden relative">
+<a class="md:col-span-8 bg-secondary-container rounded-2xl p-10 flex items-center justify-between group cursor-pointer overflow-hidden relative" href="{% url 'app:trust_analytics' %}">
 <div class="z-10">
-<h3 class="font-headline text-2xl font-bold text-on-secondary-container">Explore the AI Vision</h3>
-<p class="text-on-secondary-container/80">See how our neural networks identify species from 400km above.</p>
+<h3 class="font-headline text-2xl font-bold text-on-secondary-container">Open Trust Analytics</h3>
+<p class="text-on-secondary-container/80">Review monthly trends, upload evidence, and finance-linked insights.</p>
 </div>
 <span class="material-symbols-outlined text-5xl text-on-secondary-container group-hover:translate-x-2 transition-transform z-10">arrow_right_alt</span>
 <div class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
-</div>
+</a>
 </div>
 </div>
 </section>
@@ -217,11 +293,11 @@
 <img class="absolute inset-0 w-full h-full object-cover opacity-30" data-alt="Topographical map of Nepal highlighting forest regions" data-location="Nepal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdSF0qLiy1qRMEi8r1S-Apz2cS6tijN-miF6Rntw_1c1EmD5L-7SpddPwXHz4wWs21-nPtnvJ0HsuhuSU2EOqNkvB9TioVGbObmUD0Fjugz9mZxl8cc8wiFryixZVscXAQKMVVyrkDq1BooGFWOCgvCNyMHVFYFbibX-NKC1yefWB2rH2nGa18id2RIck3wzRMbtog_TzcCoBjq4twEXe0REbGDHSnMIaE4Qp4oz5EWIB-4KDGKwobYi-f31tVlA56vetM2BJXGQ"/>
 <div class="relative z-10 p-12 lg:p-24 max-w-2xl">
 <h2 class="font-headline text-4xl lg:text-5xl font-bold text-on-primary mb-6">Verified Assets Across 7 Provinces</h2>
-<p class="text-on-primary-container text-lg mb-10">Our network spans the breadth of the Himalayas, providing a unified dashboard for regional ecological governance.</p>
-<button class="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-semibold flex items-center gap-2 hover:bg-secondary-fixed-dim transition-all">
+<p class="text-on-primary-container text-lg mb-10">Interactive map view shows province-wise activity and recent geotagged uploads for operational monitoring.</p>
+<a class="inline-flex bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-semibold items-center gap-2 hover:bg-secondary-fixed-dim transition-all" href="{% url 'app:nepal_trust_map' %}">
 <span class="material-symbols-outlined">map</span>
-                            Launch Interactive Map
-                        </button>
+              Launch Interactive Map
+            </a>
 </div>
 </div>
 </div>
@@ -234,7 +310,7 @@
 <div class="md:col-span-1">
 <span class="font-headline font-extrabold text-2xl text-primary block mb-6">SustainNepal</span>
 <p class="text-sm text-on-surface-variant leading-relaxed">
-                        The definitive platform for verified forest assets and sovereign carbon inventory.
+            Verified forestry intelligence platform for upload processing, mapping, analytics, and carbon finance tracking.
                     </p>
 </div>
 <div>

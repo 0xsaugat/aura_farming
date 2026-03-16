@@ -187,14 +187,14 @@
       </div>
 
       <div class="dropzone rounded-2xl px-6 py-10 text-center" id="dropzone">
-        <input accept="video/*" class="hidden" id="uploadInput" type="file"/>
+        <input accept="image/*" class="hidden" id="uploadInput" type="file"/>
         <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary-container/40 text-secondary">
           <span class="material-symbols-outlined text-4xl">cloud_upload</span>
         </div>
         <p class="text-xl font-bold text-primary">Drag & Drop your files here</p>
         <p class="mt-2 text-sm font-bold text-on-surface-variant">OR</p>
         <button class="btn-upload mt-4 rounded-lg px-6 py-2 text-sm font-bold text-white" id="browseButton" type="button">Browse Files</button>
-        <p class="mt-4 text-xs text-on-surface-variant">Optimized for high-resolution video evidence submission.</p>
+        <p class="mt-4 text-xs text-on-surface-variant">Optimized for high-resolution image evidence submission.</p>
       </div>
 
       <div class="mt-6 hidden rounded-xl border border-outline-variant/30 bg-surface-container-low/55 p-4" id="selectedFileCard">
@@ -205,7 +205,7 @@
       <div class="mt-6 hidden rounded-xl border border-outline-variant/30 bg-surface-container-low/55 p-4" id="autofillCard">
         <p class="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Auto-Filled Metadata</p>
         <div class="mt-3 grid gap-3 text-sm text-primary md:grid-cols-3">
-          <p><span class="font-bold">Media Type:</span> <span id="metaMediaType">Video</span></p>
+          <p><span class="font-bold">Media Type:</span> <span id="metaMediaType">Image</span></p>
           <p><span class="font-bold">Province:</span> <span id="metaProvince">Bagmati</span></p>
           <p><span class="font-bold">District:</span> <span id="metaDistrict">Kathmandu</span></p>
           <p><span class="font-bold">Latitude:</span> <span id="metaLat">27.7172</span></p>
@@ -251,23 +251,37 @@
       <div class="success-pop mt-8 hidden rounded-2xl border border-[#b6e2cb] bg-[#effcf4] p-5" id="resultPanel">
         <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#238254]">Verification Success</p>
         <h2 class="mt-2 text-2xl font-bold text-[#1b6c45]">Result Ready</h2>
-        <p class="mt-2 text-sm text-[#377153]">Your video has been uploaded, checked, and verified successfully.</p>
+        <p class="mt-2 text-sm text-[#377153]">Your image has been uploaded, checked, and verified successfully.</p>
         <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <div class="rounded-xl border border-[#c6ead8] bg-white p-3">
             <p class="text-xs font-bold uppercase tracking-[0.1em] text-[#447e62]">Detected Trees</p>
-            <p class="mt-1 text-xl font-bold text-[#1b6c45]">14</p>
+            <p class="mt-1 text-xl font-bold text-[#1b6c45]" id="resultTrees">38</p>
           </div>
           <div class="rounded-xl border border-[#c6ead8] bg-white p-3">
             <p class="text-xs font-bold uppercase tracking-[0.1em] text-[#447e62]">Carbon Tons</p>
-            <p class="mt-1 text-xl font-bold text-[#1b6c45]">2.8</p>
+            <p class="mt-1 text-xl font-bold text-[#1b6c45]" id="resultCarbon">7.60</p>
           </div>
           <div class="rounded-xl border border-[#c6ead8] bg-white p-3">
             <p class="text-xs font-bold uppercase tracking-[0.1em] text-[#447e62]">Estimated Value</p>
-            <p class="mt-1 text-xl font-bold text-[#1b6c45]">$182.40</p>
+            <p class="mt-1 text-xl font-bold text-[#1b6c45]" id="resultValue">$570.00</p>
           </div>
           <div class="rounded-xl border border-[#c6ead8] bg-white p-3">
             <p class="text-xs font-bold uppercase tracking-[0.1em] text-[#447e62]">Trust Score</p>
-            <p class="mt-1 text-xl font-bold text-[#1b6c45]">97%</p>
+            <p class="mt-1 text-xl font-bold text-[#1b6c45]" id="resultTrust">98%</p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <p class="text-xs font-bold uppercase tracking-[0.12em] text-[#2d6d4d]">Input and Output Comparison</p>
+          <div class="mt-3 grid gap-4 md:grid-cols-2">
+            <figure class="rounded-xl border border-[#c6ead8] bg-white p-3">
+              <figcaption class="mb-2 text-xs font-bold uppercase tracking-[0.1em] text-[#447e62]">Input Image</figcaption>
+              <img alt="Input forest image" class="h-56 w-full rounded-lg object-cover" src="/media/input.png"/>
+            </figure>
+            <figure class="rounded-xl border border-[#c6ead8] bg-white p-3">
+              <figcaption class="mb-2 text-xs font-bold uppercase tracking-[0.1em] text-[#447e62]">Output Image</figcaption>
+              <img alt="Processed output with detections" class="h-56 w-full rounded-lg object-cover" src="/media/output.jpeg"/>
+            </figure>
           </div>
         </div>
       </div>
@@ -295,11 +309,31 @@
     const checkText = document.getElementById('checkText');
     const verifyIcon = document.getElementById('verifyIcon');
     const verifyText = document.getElementById('verifyText');
+    const resultTrees = document.getElementById('resultTrees');
+    const resultCarbon = document.getElementById('resultCarbon');
+    const resultValue = document.getElementById('resultValue');
+    const resultTrust = document.getElementById('resultTrust');
 
     let selectedFile = null;
 
+    const DEFAULT_TREE_COUNT = 38;
+    const CARBON_PER_TREE = 0.2;
+    const VALUE_PER_TON = 75.0;
+
+    function updateCalculatedResults() {
+      const trees = DEFAULT_TREE_COUNT;
+      const carbon = trees * CARBON_PER_TREE;
+      const value = carbon * VALUE_PER_TON;
+      const trust = Math.min(99, Math.round(85 + trees / 3));
+
+      resultTrees.textContent = String(trees);
+      resultCarbon.textContent = carbon.toFixed(2);
+      resultValue.textContent = '$' + value.toFixed(2);
+      resultTrust.textContent = trust + '%';
+    }
+
     function setStaticMetadata(fileName) {
-      document.getElementById('metaMediaType').textContent = 'Video';
+      document.getElementById('metaMediaType').textContent = 'Image';
       document.getElementById('metaProvince').textContent = 'Bagmati';
       document.getElementById('metaDistrict').textContent = 'Kathmandu';
       document.getElementById('metaLat').textContent = '27.7172';
@@ -340,7 +374,7 @@
           clearInterval(timer);
           startCheckStep();
         }
-      }, 90);
+      }, 150);
     }
 
     function startCheckStep() {
@@ -353,7 +387,7 @@
         checkIcon.className = 'material-symbols-outlined text-[#1b6c45]';
         checkText.textContent = '2. Check completed successfully';
         startVerifyStep();
-      }, 1700);
+      }, 2800);
     }
 
     function startVerifyStep() {
@@ -365,7 +399,7 @@
         verifyIcon.className = 'material-symbols-outlined text-[#1b6c45]';
         verifyText.textContent = '3. Verification completed';
         resultPanel.classList.remove('hidden');
-      }, 1500);
+      }, 2400);
     }
 
     browseButton.addEventListener('click', function () {
@@ -405,11 +439,14 @@
 
     startMockButton.addEventListener('click', function () {
       if (!selectedFile) {
-        alert('Please choose a video file first.');
+        alert('Please choose an image file first.');
         return;
       }
+      updateCalculatedResults();
       runMockPipeline();
     });
+
+    updateCalculatedResults();
   })();
 </script>
 {% endblock %}

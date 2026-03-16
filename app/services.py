@@ -24,7 +24,7 @@ from .models import (
 
 DEFAULT_SPECIES = ['pine', 'oak', 'rhododendron']
 CARBON_PER_TREE_KG = Decimal('22.0')
-DEFAULT_PRICE_PER_TON = Decimal('30.00')
+DEFAULT_PRICE_PER_TON = Decimal(str(getattr(settings, 'CARBON_PRICE_PER_TON_USD', '75.00')))
 HF_MODEL_ID = getattr(settings, 'TREE_DETECTOR_MODEL_ID', 'weecology/deepforest-tree')
 HF_SCORE_THRESHOLD = getattr(settings, 'TREE_DETECTOR_SCORE_THRESHOLD', 0.35)
 HF_API_TOKEN = getattr(settings, 'HUGGINGFACE_API_TOKEN', None)
@@ -33,7 +33,7 @@ _HF_CLIENT = None
 
 
 def _simulate_detection(upload):
-    simulated_tree_count = 30 + (upload.id % 70)
+    simulated_tree_count = 120 + (upload.id % 180)
     return {
         'tree_count': simulated_tree_count,
         'species_detected': DEFAULT_SPECIES,

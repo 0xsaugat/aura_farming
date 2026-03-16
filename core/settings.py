@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from decimal import Decimal
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -124,5 +125,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 TREE_DETECTOR_MODEL_ID = 'weecology/deepforest-tree'
 TREE_DETECTOR_SCORE_THRESHOLD = 0.35
 HUGGINGFACE_API_TOKEN = os.getenv('HUGGINGFACE_API_TOKEN')
+
+# Carbon benchmark for dashboard valuation.
+# Reference: EU ETS benchmark observed at ~69.16 EUR/tCO2e (Mar 13, 2026, TradingEconomics),
+# approximated here as 75 USD per tCO2e for display and simulation.
+CARBON_PRICE_PER_TON_USD = Decimal('75.00')
+
+# Dashboard display floors for stronger demo/test KPI visibility.
+DASHBOARD_MIN_UPLOADS = 120
+DASHBOARD_MIN_TREES = 3800
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
